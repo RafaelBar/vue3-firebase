@@ -5,12 +5,18 @@ import ToolingIcon from "./icons/IconTooling.vue";
 import EcosystemIcon from "./icons/IconEcosystem.vue";
 import CommunityIcon from "./icons/IconCommunity.vue";
 import SupportIcon from "./icons/IconSupport.vue";
-import { useCounterStore } from "@/stores/counter";
+import { useMainStore } from "@/stores/main";
 import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
-const counterStore = useCounterStore();
+const mainStore = useMainStore();
 
-const { count } = storeToRefs(counterStore);
+const { data } = storeToRefs(mainStore);
+const { currentActivePosition } = mainStore;
+
+onMounted(() => {
+  currentActivePosition();
+});
 </script>
 
 <template>
@@ -18,7 +24,7 @@ const { count } = storeToRefs(counterStore);
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation - test {{ count }}</template>
+    <template #heading>Documentation</template>
 
     Vue’s
     <a href="https://vuejs.org/" target="_blank" rel="noopener"

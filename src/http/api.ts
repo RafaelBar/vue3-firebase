@@ -6,3 +6,9 @@ export const api: AxiosInstance = axios.create({
     "Access-Control-Allow-Origin": "*",
   },
 });
+
+export async function getCurrentActivePosition() {
+  return await api
+    .get("/currentActivePosition")
+    .then((countData: any) => countData.data);
+}
